@@ -1,6 +1,6 @@
-# pokemon
+# Pokédex
 
-My first Vue JS Project 
+The Pokédex in Vue JS
 
 ## Project setup
 ```
@@ -24,4 +24,4 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
-"# pokemon" 
+"# pokedex" 
