@@ -96,6 +96,10 @@ export default {
 			this.urlPokemon = "https://pokeapi.co/api/v2/pokemon/pikachu";
 			//On initialise la liste en appelant la fonction de PokemonList
 			this.$refs.pokemonList.getPokemonListFirst()
+			//On reset le offset du Infinite Scroll
+			this.$refs.pokemonList.offsetElm = 1
+			//On reset la recherche
+			this.$refs.pokemonList.isSearch = false
 		}
 	},
 	mounted(){

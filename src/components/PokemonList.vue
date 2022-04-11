@@ -8,7 +8,7 @@
 				Problem while listing pokemon list
 			</div>
 			<div v-else>
-                <ul class="pokemon-list">
+                <ul class="pokemon-list" id="infiniteScroll">
                     <li 
                         v-for="pokemon in pokemonList" 
                         :key="pokemon.id" 
@@ -35,10 +35,10 @@
                             </div>
                         </div>
                     </li>
+                    <div v-if="loadingScroll" class="loading">
+                        <img src="/images/pokeball.svg" class='loader'>
+                    </div>
                 </ul>
-                <div v-if="noSearch" class="error">
-
-                </div>
 			</div>
         </div>
 	</section>
@@ -61,10 +61,13 @@ export default {
 	data() {
 		return {
 			loading: false,
+			loadingScroll: false,
+            pokemonByLoading: 20,
             url: "https://pokeapi.co/api/v2/pokemon/?limit=20",
             urlSearch: "https://pokeapi.co/api/v2/pokemon/?limit=1200",
-            pokemonList:[],
-            noSearch: true,
+            isSearch: false,
+            pokemonList: [],
+            offsetElm: 1
 		}
 	},
 	methods: {
@@ -75,6 +78,23 @@ export default {
             while (s.length < size) s = "0" + s;
             return s;
         },
+        //On récupère l'image dispo du pokemon
+        choosePokemonImg(sprites,key){
+            if(sprites.other['official-artwork'].front_default == null){
+                if(sprites.other.dream_world.front_default== null){
+                    //on a pas d'image on cache le pokemon
+                    this.pokemonList[key].class = "inactive"
+                    this.pokemonList[key].img = ""
+                }else{
+                    this.pokemonList[key].img = sprites.other.dream_world.front_default
+                }
+            }else{
+                this.pokemonList[key].img = sprites.other['official-artwork'].front_default
+                
+            }
+        },
+        //On récupère le contenu de chaque pokemon
+        //pour mettre a jour pokemonList
         getPokemonListInfo(url,key){
             axios.get(url)
             .then(response => {
@@ -84,42 +104,49 @@ export default {
                 this.pokemonList[key].types = response.data.types
                 this.pokemonList[key].class = response.data.types[0].type.name
                 //On regarde si il n'y a pas d'image
-                this.pokemonList[key].img = response.data.sprites.other.dream_world.front_default
+                this.choosePokemonImg(response.data.sprites,key)
                 this.pokemonList[key].url = url
             })
             .catch(error => { 
                 console.log(error)
             })
+            
         },
+        //On récupère la liste des pokemons
+        //uniquement name et url
 		getPokemonList(url){
             const self = this
             axios.get(url)
             .then(response => {
-                //On vient mettre la liste à jour
-                this.pokemonList = response.data.results
 
-                //on vient mettre à jour l'img pour chaque objet pokemon
-                //en appelant via l'url de chaque pokemon
+                //On parcours le resultat pour ajouter sur la liste en cours
+                response.data.results.map(function(value){
+                    self.pokemonList.push(value)
+                })
+
+                //maj de chaque pokemon avec des infos supplémentaire
+                //type, id, class, img
                 this.pokemonList.map(function(value, key) {
-                    self.getPokemonListImg(value.url,key)
+                    self.getPokemonListInfo(value.url,key)
                 })
             })
             .catch(error => { 
                 console.log(error)
             })
-            .finally(() => (this.loadingList = false))
+            .finally(() => (this.loadingScroll = false))
 		},
+        //Similaire à getPokemonList
+        //sans utiliser d'url paramètre
         getPokemonListFirst(){
             const self = this
 			this.loading = true
-			this.noSearch = true
             axios.get(self.url)
             .then(response => {
                 //On vient mettre la liste à jour
                 this.pokemonList = response.data.results
 
-                //on vient mettre à jour l'img pour chaque objet pokemon
-                //en appelant via l'url de chaque pokemon
+                //maj de chaque pokemon avec des infos supplémentaire
+                //type, id, class, img
                 this.pokemonList.map(function(value, key) {
                     self.getPokemonListInfo(value.url,key)
                 })
@@ -129,13 +156,10 @@ export default {
             })
             .finally(() => (this.loading = false))
 		},
-        getInfoPokemon(url,name){
-            this.$parent.majData(name,url,'click')
-        },
         getPokemonListSearch(search){
             const self = this
-            this.noSearch = false
             this.loading = true
+            this.isSearch = true
 
             axios.get(this.urlSearch)
             .then(response => {
@@ -144,22 +168,41 @@ export default {
                     pokemonList.name.toLowerCase().includes(search.toLowerCase())
                 );
 
-                //on vient mettre à jour l'img pour chaque objet pokemon
-                //en appelant via l'url de chaque pokemon
+                //maj de chaque pokemon avec des infos supplémentaire
+                //type, id, class, img
                 this.pokemonList.map(function(value, key) {
-                    self.getPokemonListImg(value.url,key)
+                    self.getPokemonListInfo(value.url,key)
                 })
             })
             .catch(error => { 
                 console.log(error)
             })
             .finally(() => (this.loading = false))
+        },
+        getInfoPokemon(url,name){
+            this.$parent.majData(name,url,'click')
         }
 	},
-	mounted () {
+    beforeMount() {
         //On lance la liste de pokemon de base
-		this.getPokemonListFirst()
-	}
+		this.getPokemonListFirst();
+    },
+    mounted() {
+        //Chargement au scroll
+        window.onscroll = () => {
+            //On regarde si on arrive en base de page
+            let bottomOfWindow = Math.round(document.documentElement.scrollTop + window.innerHeight) === document.documentElement.offsetHeight
+
+            //On vient charger les nouveaux items
+            if (bottomOfWindow && !this.isSearch) {
+                this.loadingScroll = true
+                let newOffset = this.offsetElm * this.pokemonByLoading
+                let newUrl = "https://pokeapi.co/api/v2/pokemon/?offset="+newOffset+"&limit="+this.pokemonByLoading;
+                this.getPokemonList(newUrl)
+                this.offsetElm++
+            }
+        }
+    }
 
 }
 </script>
@@ -325,6 +368,9 @@ export default {
     }
     .shadow{
         background-color: #080c46;
+    }
+    .inactive{
+        display: none !important;
     }
 
     ///////////////////////////
