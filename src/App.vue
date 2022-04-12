@@ -19,7 +19,8 @@
 			v-on:keyup.enter="searchPokemon()"/>
 		<i 
 			class="ri-close-line search-reset" 
-			@click="searchReset()"></i>
+			@click="searchReset()"
+			title="Reset search"></i>
 	</div>
 	<h1>Pokédex</h1>
 	<div class="container-list">
@@ -137,7 +138,7 @@ export default {
 			cursor: pointer;
 			transition: all 400ms ease-in-out;
 			z-index: 1;
-			padding: 20px 30px;
+			padding: 30px;
 			background-color: #f5f5f7;
 			border-radius: 50px;
 			display: flex;

@@ -118,7 +118,6 @@ export default {
             const self = this
             axios.get(url)
             .then(response => {
-
                 //On parcours le resultat pour ajouter sur la liste en cours
                 response.data.results.map(function(value){
                     self.pokemonList.push(value)
@@ -133,7 +132,7 @@ export default {
             .catch(error => { 
                 console.log(error)
             })
-            .finally(() => (this.loadingScroll = false))
+            .finally(() => ( this.loadingScroll = false ))
 		},
         //Similaire à getPokemonList
         //sans utiliser d'url paramètre
@@ -154,7 +153,7 @@ export default {
             .catch(error => { 
                 console.log(error)
             })
-            .finally(() => (this.loading = false))
+            .finally(() => ( this.loading = false ))
 		},
         getPokemonListSearch(search){
             const self = this
@@ -177,7 +176,7 @@ export default {
             .catch(error => { 
                 console.log(error)
             })
-            .finally(() => (this.loading = false))
+            .finally(() => ( this.loading = false ))
         },
         getInfoPokemon(url,name){
             this.$parent.majData(name,url,'click')
@@ -194,6 +193,7 @@ export default {
             let bottomOfWindow = Math.round(document.documentElement.scrollTop + window.innerHeight) === document.documentElement.offsetHeight
 
             //On vient charger les nouveaux items
+            //Si bottomOfWindow est true que l'on est pas en resultat de recherche
             if (bottomOfWindow && !this.isSearch) {
                 this.loadingScroll = true
                 let newOffset = this.offsetElm * this.pokemonByLoading
@@ -208,8 +208,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-    @import "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css";
-
     .pokemon-item{
         width: 100%;
         display: flex;
@@ -226,6 +224,7 @@ export default {
             column-gap: 20px;
             row-gap: 20px;
             margin-bottom: 20px;
+            position: relative;
             li{
                 display: flex;
                 flex-direction: column;
@@ -237,6 +236,7 @@ export default {
                 background-repeat: no-repeat;
                 background-size: 60%;
                 padding: 20px;
+                transition: all 400ms ease-in-out;
                 .top{
                     display: flex;
                     width: 100%;
@@ -293,12 +293,30 @@ export default {
                     }
                 }
                 &:hover{
-
+                    -webkit-box-shadow: inset 5px 5px 45px 9px rgba(0,0,0,0.3); 
+                    box-shadow: inset 5px 5px 45px 9px rgba(0,0,0,0.3);
+                    .bottom{
+                        .right{
+                            img{
+                                transform: scale(1.05);
+                            }
+                        }
+                    }
                 }
+            }
+            .loading{
+                position: absolute;
+                bottom: 50px;
+                left: 50%;
+                transform: translateX(-50%);
+                display: inherit;
             }
         }
     }
 	.loading{
+        position: relative;
+        display: flex;
+        justify-content: center;
 		.loader{
 			width: 200px;
 			animation: spin 2s linear infinite;
