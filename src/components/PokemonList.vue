@@ -16,6 +16,7 @@
                         :class="pokemon.class"
                         >
                         <div class="top">
+                            <span class="name-mobile">{{ pokemon.name }}</span>
                             <span class="id">#{{ pokemon.id }}</span>
                         </div>
                         <div class="bottom">
@@ -210,6 +211,8 @@ export default {
 <style scoped lang="scss">
     .pokemon-item{
         width: 100%;
+        max-width: 2000px;
+        margin: 0 auto;
         display: flex;
         flex-direction: column;
         row-gap: 20px;
@@ -241,8 +244,17 @@ export default {
                     display: flex;
                     width: 100%;
                     margin-bottom: 30px;
+                    justify-content: space-between;
+                    .name-mobile{
+                        text-transform: capitalize;
+                        color: white;
+                        font-size: 20px;
+                        font-weight: bold;
+                        opacity: 0;
+                        visibility: hidden;
+                    }
                     .id{
-                        width: 100%;
+                        width: fit-content;
                         font-size: 30px;
                         font-weight: 700;
                         text-align: right;
@@ -285,10 +297,11 @@ export default {
                     .right{
                         width: 50%;
                         display: flex;
+                        justify-content: center;
                         img{
                             transition: all 400ms ease-in-out;
                             width: 100%;
-                            max-height: 12.5rem;
+                            height: auto;
                         }
                     }
                 }
@@ -395,13 +408,56 @@ export default {
 	/////   MediaQueries //////
 	///////////////////////////
 	@media screen and (max-width: 1100px) {
+        .pokemon-item{
+            ul.pokemon-list{
+                grid-template-columns: repeat(2,1fr);
+                column-gap: 20px;
+                row-gap: 20px;
+                margin-bottom: 20px;
+                li{
+                }
+            }
+        }
         
     }
     
-    @media screen and (max-width: 500px) {
-		
+    @media screen and (max-width: 760px) {
+		.pokemon-item{
+            ul.pokemon-list{
+                grid-template-columns: repeat(1,1fr);
+            }
+        }
     }
-        
+      
+    @media screen and (max-width: 500px) {
+		.pokemon-item{
+            ul.pokemon-list{
+                li{
+                    .top{
+                        .id{
+                            font-size: 20px;
+                        }
+                        .name-mobile{
+                            opacity: 1;
+                            visibility: visible;
+                        }
+                    }
+                    .bottom{
+                        flex-direction: column;
+                        .left{
+                            display: none;
+                        }
+                        .right{
+                            width: 100%;
+                            img{
+                                max-width: 50%;
+                            }
+                        }
+                    } 
+                }
+            }
+        }
+    }  
 
 	///////////////////////////
 	/////   Keyframes   ///////

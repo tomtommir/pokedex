@@ -114,7 +114,7 @@ export default {
 	@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap');
 
 	#app{
-		padding: 30px;
+		padding: 0 30px;
 		&:before{
 			content:'';
 			top: 0;
@@ -159,7 +159,7 @@ export default {
 		}
 		.search-container{
 			width: 400px;
-			top: 40px;
+			top: 50px;
 			left: 50%;
 			margin-left: -200px;
 			position: fixed;
@@ -203,7 +203,7 @@ export default {
 		font-family: 'Lalezar', cursive;
 		font-weight: 700;
 		text-align: left;
-		margin: 30px 0px 0px 0px;
+		margin: 50px 0px 0px 0px;
 	}
 	
 	.container-list{
@@ -214,9 +214,6 @@ export default {
 	}
 	
 	@media screen and (max-width: 1100px) {
-		.app{
-			margin-top: 20px;
-		}
 		.nav{
 			column-gap: 20px;
 		}
@@ -227,7 +224,39 @@ export default {
 		}
 	}
 
-	@media screen and (max-width: 500px) {
+	@media screen and (max-width: 760px) {
+		#app{
+			h1{
+				margin-top: 20px;
+			}
+			&:before{
+				display: none;
+			}
+			.search-toggle {
+				right: 20px;
+				top: 20px;
+				font-size: 25px;
+				padding: 15px;
+				&:hover{
+					&:before{
+						transform: initial;
+					}
+				}
+			}
+			.search-container {
+				width: 80%;
+				top: 27px;
+				left: 0;
+				margin: 0;
+				padding: 0 20px;
+				.search-reset {
+					right: 30px;
+				}
+				.search-button{
+					left: 30px;
+				}
+			}
+		}
 		.search-container{
 			width: 100%;
 		}
