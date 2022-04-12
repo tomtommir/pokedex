@@ -1,46 +1,45 @@
 <template>
 	<section class="pokemon-item">
-		<div v-if="loading" class="loading">
-            <img src="/images/pokeball.svg" class='loader'>
+        <div v-if="error" class="error">
+            Problem while listing pokemon list
         </div>
         <div v-else>
-			<div v-if="error" class="error">
-				Problem while listing pokemon list
-			</div>
-			<div v-else>
-                <ul class="pokemon-list" id="infiniteScroll">
-                    <li 
-                        v-for="pokemon in pokemonList" 
-                        :key="pokemon.id" 
-                        @click="getInfoPokemon(pokemon.url,pokemon.name)"
-                        :class="pokemon.class"
-                        >
-                        <div class="top">
-                            <span class="name-mobile">{{ pokemon.name }}</span>
-                            <span class="id">#{{ pokemon.id }}</span>
-                        </div>
-                        <div class="bottom">
-                            <div class="left">
-                                <span class="name">{{ pokemon.name }}</span>
-                                <div class="types">
-                                    <span 
-                                        v-for="type in pokemon.types" 
-                                        :key="type.slot"
-                                        >
-                                        {{ type.type.name }}
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="right">
-                                <img class="pokemon-img" :src="pokemon.img" :alt="pokemon.name" />
-                            </div>
-                        </div>
-                    </li>
-                    <div v-if="loadingScroll" class="loading">
-                        <img src="/images/pokeball.svg" class='loader'>
+            <ul class="pokemon-list" id="infiniteScroll">
+                <li 
+                    v-for="pokemon in pokemonList" 
+                    :key="pokemon.id" 
+                    @click="getInfoPokemon(pokemon.url,pokemon.name)"
+                    :class="pokemon.class"
+                    >
+                    <div class="top">
+                        <span class="name-mobile">{{ pokemon.name }}</span>
+                        <span class="id">#{{ pokemon.id }}</span>
                     </div>
-                </ul>
-			</div>
+                    <div class="bottom">
+                        <div class="left">
+                            <span class="name">{{ pokemon.name }}</span>
+                            <div class="types">
+                                <span 
+                                    v-for="type in pokemon.types" 
+                                    :key="type.slot"
+                                    >
+                                    {{ type.type.name }}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <img 
+                                class="pokemon-img" 
+                                :src="pokemon.img" 
+                                :alt="pokemon.name" 
+                                />
+                        </div>
+                    </div>
+                </li>
+                <div v-if="loadingScroll" class="loading">
+                    <img src="/images/pokeball.svg" class='loader'>
+                </div>
+            </ul>
         </div>
 	</section>
 </template>
@@ -52,7 +51,6 @@ export default {
 	name: "PokemonList",
 	props: ["search"],
     components: {
-		
 	},
 	watch: {
         search: function(search) {
@@ -64,6 +62,7 @@ export default {
 			loading: false,
 			loadingScroll: false,
             pokemonByLoading: 20,
+            loadingImg: 0,
             url: "https://pokeapi.co/api/v2/pokemon/?limit=20",
             urlSearch: "https://pokeapi.co/api/v2/pokemon/?limit=1200",
             isSearch: false,
@@ -72,6 +71,20 @@ export default {
 		}
 	},
 	methods: {
+        //On regarde si les images sont loadés
+        //Tant que l'on atteint pas le pokemonByLoading
+        //on enlève pas le scroll
+        toggleDownloadImage(){
+            this.loadingImg++
+            //on a chargé toutes les images
+            if(this.loadingImg===this.pokemonByLoading){
+                //on reset le compteur de chargement d'image
+                this.loadingImg = 0
+                //on enlève les loaders
+                this.loading = false
+                this.loadingScroll = false
+            }
+        },
         //Pour mettre enb forme correctement l'ID
         //rajoute autant de 0 possible suivant la taille
         padLeadingZeros(num, size) {
@@ -133,7 +146,7 @@ export default {
             .catch(error => { 
                 console.log(error)
             })
-            .finally(() => ( this.loadingScroll = false ))
+            // .finally(() => ( this.loadingScroll = false ))
 		},
         //Similaire à getPokemonList
         //sans utiliser d'url paramètre
@@ -154,7 +167,7 @@ export default {
             .catch(error => { 
                 console.log(error)
             })
-            .finally(() => ( this.loading = false ))
+            // .finally(() => ( this.loading = false ))
 		},
         getPokemonListSearch(search){
             const self = this
@@ -177,7 +190,7 @@ export default {
             .catch(error => { 
                 console.log(error)
             })
-            .finally(() => ( this.loading = false ))
+            // .finally(() => ( this.loading = false ))
         },
         getInfoPokemon(url,name){
             this.$parent.majData(name,url,'click')
@@ -326,16 +339,6 @@ export default {
             }
         }
     }
-	.loading{
-        position: relative;
-        display: flex;
-        justify-content: center;
-		.loader{
-			width: 200px;
-			animation: spin 2s linear infinite;
-			transform-origin: center;
-		}
-	}
 
     //////////////////////////////
 	/////   Color List Type //////
@@ -458,14 +461,4 @@ export default {
             }
         }
     }  
-
-	///////////////////////////
-	/////   Keyframes   ///////
-	///////////////////////////
-	@keyframes spin { 
-		100% { 
-			-webkit-transform: rotate(360deg); 
-			transform:rotate(360deg); 
-		} 
-	}
 </style>
