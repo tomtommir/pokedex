@@ -1,8 +1,8 @@
 <template>
-	<nav>
+	<!-- <nav>
 		<router-link to="/">Pokedex</router-link> |
 		<router-link to="/pokemon">Pokemon</router-link>
-	</nav>
+	</nav> -->
   	<router-view/>
 </template>
 <style lang="scss">

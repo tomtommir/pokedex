@@ -22,7 +22,7 @@
 			@click="searchReset()"
 			title="Reset search"></i>
 	</div>
-	<h1>{{ name }}</h1>
+	<h1>Pokédex</h1>
 	<div class="container-list">
 		<PokemonList 
 			ref="pokemonList"
@@ -38,18 +38,18 @@
 
 <script>
 import PokemonList from "@/components/PokemonList"
-import SearchBar from "@/components/SearchBar"
+//import SearchBar from "@/components/SearchBar"
 import $ from 'jquery'
 export default {
-	name: "Pokédex",
+	name: "HomeView",
 	components: {
 		PokemonList,
-		SearchBar,
+		//SearchBar,
 	},
 	data() {
 		return {
-			namePokemon: "Pikachu",
-			urlPokemon: "https://pokeapi.co/api/v2/pokemon/pikachu",
+			namePokemon: String,
+			urlPokemon: String,
 			search: "",
 			searchList: "",
 			clickedList: false,
