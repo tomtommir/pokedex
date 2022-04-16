@@ -22,7 +22,7 @@
 			@click="searchReset()"
 			title="Reset search"></i>
 	</div>
-	<h1>Pokédex</h1>
+	<h1>{{ name }}</h1>
 	<div class="container-list">
 		<PokemonList 
 			ref="pokemonList"
@@ -37,14 +37,14 @@
 </template>
 
 <script>
-// import PokemonInfo from "./components/PokemonInfo"
 import PokemonList from "@/components/PokemonList"
+import SearchBar from "@/components/SearchBar"
 import $ from 'jquery'
 export default {
-	name: "App",
+	name: "Pokédex",
 	components: {
-		// PokemonInfo,
 		PokemonList,
+		SearchBar,
 	},
 	data() {
 		return {

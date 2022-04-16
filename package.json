@@ -16,7 +16,7 @@
     "vue": "^3.2.13",
     "vue-nprogress": "^0.2.0",
     "vue-pagination-tw": "^0.1.2",
-    "vue-router": "^4.0.3",
+    "vue-router": "^4.0.14",
     "vuejs-paginate-next": "^1.0.2",
     "vuex": "^4.0.0"
   },
