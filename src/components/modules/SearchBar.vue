@@ -79,15 +79,15 @@ export default {
         top: 40px;
         font-size: 30px;
         cursor: pointer;
-        transition: all 400ms ease-in-out;
+        transition: $transition;
         z-index: 1;
         padding: 30px;
-        background-color: #f5f5f7;
+        background-color: $white-cream-transparent;
         border-radius: 50px;
         display: flex;
         z-index: 3;
         &:before{
-            transition: all 400ms ease-in-out;
+            transition: $transition;
         }
         &:hover{
             &:before{
@@ -130,18 +130,18 @@ export default {
             padding: 10px 40px;
             border: none;
             border-radius: 20px;
-            border: 2px solid #f5f5f7;
-            transition: all 400ms ease-in;
+            border: 2px solid $white-cream-transparent;
+            transition: $transition;
             &:focus-visible{
                 outline: none;
             }
             &:focus,&:active{
                 outline: none;
-                border: 2px solid #2b2b2b;
+                border: 2px solid $dark-grey;
             }
         }
     }
-    @media screen and (max-width: 760px) {
+    @media screen and (max-width: $big-phone) {
     #app{
         .search-toggle {
             right: 20px;

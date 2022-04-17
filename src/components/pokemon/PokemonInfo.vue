@@ -112,7 +112,7 @@ export default {
 		position: relative;
         width: 100%;
 		padding: 50px;
-		background: white;
+		background: $white;
 		border-radius: 20px;
 		flex-direction: column;
 		row-gap: 20px;
@@ -136,7 +136,7 @@ export default {
 		h2{
 			font-size: 30px;
 			font-weight: 500;
-			color: black;
+			color: $black;
 			margin: 0;
 			text-transform: capitalize;
 			margin-bottom: 20px;
@@ -167,29 +167,11 @@ export default {
 			}
 		}
 	}
-	.loading{
-		.loader{
-			width: 200px;
-			animation: spin 2s linear infinite;
-			transform-origin: center;
-		}
-	}
-
-	///////////////////////////
-	/////   Keyframes   ///////
-	///////////////////////////
-	@keyframes spin { 
-		100% { 
-			-webkit-transform: rotate(360deg); 
-			transform:rotate(360deg); 
-		} 
-	}
-
 
 	///////////////////////////
 	/////   MediaQueries //////
 	///////////////////////////
-	@media screen and (max-width: 1100px) {
+	@media screen and (max-width: $tablet) {
 		.pokemon-item{
 			max-width: 100%;
 			margin: 20px 0;
@@ -211,7 +193,7 @@ export default {
 		}
 	}
 
-	@media screen and (max-width: 500px) {
+	@media screen and (max-width: $phone) {
 		.pokemon-item{
 			padding: 15px;
 			.column_container{

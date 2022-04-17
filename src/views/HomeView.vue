@@ -18,8 +18,8 @@
 </template>
 
 <script>
-import PokemonList from "@/components/PokemonList"
-import SearchBar from "@/components/SearchBar"
+import PokemonList from "@/components/home/PokemonList"
+import SearchBar from "@/components/modules/SearchBar"
 import $ from 'jquery'
 export default {
 	name: "HomeView",
@@ -71,33 +71,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
-	@import url('https://fonts.googleapis.com/css2?family=Lalezar&display=swap');
-	@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap');
-	#app{
-		padding: 0 30px;
-		&:before{
-			content:'';
-			top: 0;
-			right: 0;
-			position: fixed;
-			display: block;
-			width: 15rem;
-			height: 16.688rem;
-			background: url("@/assets/background-pokeball.png");
-			background-size: cover;
-		}
-		*{
-			box-sizing: border-box;
-			font-family: 'Poppins', sans-serif;
-		}
-	}
-	h1{
-		font-family: 'Lalezar', cursive;
-		font-weight: 700;
-		text-align: left;
-		margin: 50px 0px 0px 0px;
-	}
+<style scoped lang="scss">
 	
 	.container-list{
 		width: 100%;
@@ -106,7 +80,7 @@ export default {
 		column-gap: 20px;
 	}
 	
-	@media screen and (max-width: 1100px) {
+	@media screen and (max-width: $tablet) {
 		.nav{
 			column-gap: 20px;
 		}
@@ -116,14 +90,5 @@ export default {
 			row-gap: 20px;
 		}
 	}
-	@media screen and (max-width: 760px) {
-		#app{
-			h1{
-				margin-top: 20px;
-			}
-			&:before{
-				display: none;
-			}			
-		}
-	}
+	
 </style>

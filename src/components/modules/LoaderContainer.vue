@@ -30,18 +30,8 @@ export default {
         justify-content: center;
 		.loader{
 			width: 200px;
-			animation: spin 2s linear infinite;
+			animation: $spin;
 			transform-origin: center;
 		}
-	}
-
-    ///////////////////////////
-	/////   Keyframes   ///////
-	///////////////////////////
-	@keyframes spin { 
-		100% { 
-			-webkit-transform: rotate(360deg); 
-			transform:rotate(360deg); 
-		} 
 	}
 </style>

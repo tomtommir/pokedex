@@ -230,7 +230,7 @@ export default {
         flex-direction: column;
         row-gap: 20px;
         z-index: 1;
-        transition: all 400ms ease-in-out;
+        transition: $transition;
         ul.pokemon-list{
             list-style: none;
             margin: 0;
@@ -247,12 +247,12 @@ export default {
                 align-items: center;
                 cursor: pointer;
                 border-radius: 30px;
-                background-image: url("../assets/background-pokemon.png");
+                background-image: url("../../assets/background-pokemon.png");
                 background-position: right bottom;
                 background-repeat: no-repeat;
                 background-size: 60%;
                 padding: 20px;
-                transition: all 400ms ease-in-out;
+                transition: $transition;
                 .top{
                     display: flex;
                     width: 100%;
@@ -260,7 +260,7 @@ export default {
                     justify-content: space-between;
                     .name-mobile{
                         text-transform: capitalize;
-                        color: white;
+                        color: $white;
                         font-size: 20px;
                         font-weight: bold;
                         opacity: 0;
@@ -272,8 +272,8 @@ export default {
                         font-weight: 700;
                         text-align: right;
                         opacity: 0.15;
-                        color: white;
-                        font-family: 'Lalezar', cursive;
+                        color: $white;
+                        font-family: $lalezar;
                     }
                 }
                 .bottom{
@@ -286,7 +286,7 @@ export default {
                         flex-direction: column;
                         .name{
                             text-transform: capitalize;
-                            color: white;
+                            color: $white;
                             font-size: 30px;
                             font-weight: bold;
                             margin-bottom: 30px;
@@ -297,9 +297,9 @@ export default {
                             row-gap: 15px;
                             margin-bottom: 30px;
                             span{
-                                color:white;
+                                color: $white;
                                 text-transform: capitalize;
-                                background-color: rgba(255, 255, 255, 0.2);
+                                background-color: $grey-transparent;
                                 border-radius: 30px;
                                 padding: 10px 20px;
                                 display: inline-block;
@@ -312,7 +312,7 @@ export default {
                         display: flex;
                         justify-content: center;
                         img{
-                            transition: all 400ms ease-in-out;
+                            transition: $transition;
                             width: 100%;
                             height: auto;
                         }
@@ -340,77 +340,10 @@ export default {
         }
     }
 
-    //////////////////////////////
-	/////   Color List Type //////
-	//////////////////////////////
-    .normal{
-        background-color: #A8A77A;
-    }
-    .fighting{
-        background-color: #C22E28;
-    }
-    .flying{
-        background-color: #A98FF3;
-    }
-    .poison{
-        background-color: #A33EA1;
-    }
-    .ground{
-        background-color: #E2BF65;
-    }
-    .rock{
-        background-color: #B6A136;
-    }
-    .bug{
-        background-color: #A6B91A;
-    }
-    .ghost{
-        background-color: #735797;
-    }
-    .steel{
-        background-color: #B7B7CE;
-    }
-    .fire{
-        background-color: #EE8130;
-    }
-    .water{
-        background-color: #6390F0;
-    }
-    .grass{
-        background-color: #7AC74C;
-    }
-    .electric{
-        background-color: #F7D02C;
-    }
-    .psychic{
-        background-color: #F95587;
-    }
-    .ice{
-        background-color: #96D9D6;
-    }
-    .dragon{
-        background-color: #6F35FC;
-    }
-    .dark{
-        background-color: #705746;
-    }
-    .fairy{
-        background-color: #D685AD;
-    }
-    .unknown{
-        background-color: #9ea382;
-    }
-    .shadow{
-        background-color: #080c46;
-    }
-    .inactive{
-        display: none !important;
-    }
-
     ///////////////////////////
 	/////   MediaQueries //////
 	///////////////////////////
-	@media screen and (max-width: 1100px) {
+	@media screen and (max-width: $tablet) {
         .pokemon-item{
             ul.pokemon-list{
                 grid-template-columns: repeat(2,1fr);
@@ -424,7 +357,7 @@ export default {
         
     }
     
-    @media screen and (max-width: 760px) {
+    @media screen and (max-width: $big-phone) {
 		.pokemon-item{
             ul.pokemon-list{
                 grid-template-columns: repeat(1,1fr);
@@ -432,7 +365,7 @@ export default {
         }
     }
       
-    @media screen and (max-width: 500px) {
+    @media screen and (max-width: $phone) {
 		.pokemon-item{
             ul.pokemon-list{
                 li{

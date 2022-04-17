@@ -1,0 +1,119 @@
+/////////////////////
+////    COLOR    ////
+/////////////////////
+$white: rgba(#ffffff,1);
+$black: rgba(#161c22,1);
+$white-cream-transparent: rgba(#f5f5f7, 1);
+$grey: rgba(255, 255, 255, 1);
+$dark-grey: rgba(#2b2b2b, 1);
+
+$grey-transparent: rgba($grey, 0.2);
+
+
+/////////////////////
+////    FONTS    ////
+/////////////////////
+@import url('https://fonts.googleapis.com/css2?family=Lalezar&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap');
+$avenir: Avenir, Helvetica, Arial, sans-serif;
+$poppins: 'Poppins', sans-serif;
+$lalezar: 'Lalezar', cursive;
+
+
+/////////////////////
+////    SIZES    ////
+/////////////////////
+$tablet: 1100px;
+$big-phone: 760px;
+$phone: 500px;
+
+
+/////////////////////
+//// TRANSITIONS ////
+/////////////////////
+$transition: all 400ms ease-in-out;
+
+
+/////////////////////
+//// ANIMATIONS  ////
+/////////////////////
+$spin: spin 2s linear infinite;
+
+
+///////////////////////////
+/////   KEYFRAMES   ///////
+///////////////////////////
+@keyframes spin { 
+    100% { 
+        -webkit-transform: rotate(360deg); 
+        transform:rotate(360deg); 
+    } 
+}
+
+
+//////////////////////////////
+/////   Color List Type //////
+//////////////////////////////
+.normal{
+    background-color: #A8A77A;
+}
+.fighting{
+    background-color: #C22E28;
+}
+.flying{
+    background-color: #A98FF3;
+}
+.poison{
+    background-color: #A33EA1;
+}
+.ground{
+    background-color: #E2BF65;
+}
+.rock{
+    background-color: #B6A136;
+}
+.bug{
+    background-color: #A6B91A;
+}
+.ghost{
+    background-color: #735797;
+}
+.steel{
+    background-color: #B7B7CE;
+}
+.fire{
+    background-color: #EE8130;
+}
+.water{
+    background-color: #6390F0;
+}
+.grass{
+    background-color: #7AC74C;
+}
+.electric{
+    background-color: #F7D02C;
+}
+.psychic{
+    background-color: #F95587;
+}
+.ice{
+    background-color: #96D9D6;
+}
+.dragon{
+    background-color: #6F35FC;
+}
+.dark{
+    background-color: #705746;
+}
+.fairy{
+    background-color: #D685AD;
+}
+.unknown{
+    background-color: #9ea382;
+}
+.shadow{
+    background-color: #080c46;
+}
+.inactive{
+    display: none !important;
+}
