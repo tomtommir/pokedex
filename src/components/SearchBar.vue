@@ -30,7 +30,8 @@ export default {
     name: "SearchBar",
 	data() {
 		return { 
-            isSearchActive: false
+            isSearchActive: false,
+            search: ""
         } 
     },
     methods:{
@@ -48,21 +49,21 @@ export default {
 			if(this.search == ""){
 				return false
 			}else{
-				this.majData(this.search,"https://pokeapi.co/api/v2/pokemon/"+this.search,'search')
+                //On envoie au component parent le resultat de la recherche
+                this.$emit('search-pokemon', { 
+                        content: this.search,
+                        url: "https://pokeapi.co/api/v2/pokemon/"+this.search,
+                        type: 'search'
+                    }
+                )
 			}
 		},
 		searchReset(){
 			//On vide le champ recherche
 			this.search = ""
-			//On initialise les champs Pour le component PokemonInfo
-			this.namePokemon = "Pikachu";
-			this.urlPokemon = "https://pokeapi.co/api/v2/pokemon/pikachu";
-			//On initialise la liste en appelant la fonction de PokemonList
-			this.$refs.pokemonList.getPokemonListFirst()
-			//On reset le offset du Infinite Scroll
-			this.$refs.pokemonList.offsetElm = 1
-			//On reset la recherche
-			this.$refs.pokemonList.isSearch = false
+
+            //On envoie au component parent le reset de la recherche
+            this.$emit('reset-pokemon')
 		}
     },
     mounted() {
@@ -142,12 +143,6 @@ export default {
     }
     @media screen and (max-width: 760px) {
     #app{
-        h1{
-            margin-top: 20px;
-        }
-        &:before{
-            display: none;
-        }
         .search-toggle {
             right: 20px;
             top: 20px;
