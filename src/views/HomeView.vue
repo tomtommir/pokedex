@@ -1,19 +1,21 @@
 <template>
-	<SearchBar 
-		@search-pokemon="searchPokemon"
-		@reset-pokemon="resetPokemon"
-	/>
-	<h1>Pokédex</h1>
-	<div class="container-list">
-		<PokemonList 
-			ref="pokemonList"
-			:search="searchList"
+	<div class="container-home">
+		<SearchBar 
+			@search-pokemon="searchPokemon"
+			@reset-pokemon="resetPokemon"
 		/>
-		<!-- <PokemonInfo
-			:name="namePokemon"
-			:url="urlPokemon"
-			:clicked="clickedList"
-		/> -->
+		<h1>Pokédex</h1>
+		<div class="container-list">
+			<PokemonList 
+				ref="pokemonList"
+				:search="searchList"
+			/>
+			<!-- <PokemonInfo
+				:name="namePokemon"
+				:url="urlPokemon"
+				:clicked="clickedList"
+			/> -->
+		</div>
 	</div>
 </template>
 
@@ -72,6 +74,22 @@ export default {
 </script>
 
 <style scoped lang="scss">
+	.container-home{
+		position: relative;
+		padding: 0 30px;
+		&:before{
+			content:'';
+			top: 0;
+			right: 0;
+			position: fixed;
+			display: block;
+			width: 15rem;
+			height: 16.688rem;
+			background: url("@/assets/background-pokeball.png");
+			background-size: cover;
+		}
+	}
+
 	
 	.container-list{
 		width: 100%;
@@ -88,6 +106,14 @@ export default {
 			flex-direction: column;
 			display: flex;
 			row-gap: 20px;
+		}
+	}
+
+	@media screen and (max-width: $big-phone) {
+		.container-home{
+			&:before{
+				display: none;
+			}			
 		}
 	}
 	
