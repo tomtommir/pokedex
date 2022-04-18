@@ -11,14 +11,14 @@
         }"
       >
         <label
-          :for="`${_uid}${index}`"
+          :for="`input-${index}`"
           v-text="tab"
           class=""
         />
         <input
-          :id="`${_uid}${index}`"
+          :id="`input-${index}`"
           type="radio"
-          :name="`${_uid}-tab`"
+          :name="`input-${index}-tab`"
           :value="index + 1"
           v-model="activeTab"
           class="hidden"
@@ -56,3 +56,59 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+	ul.tab-nav{
+		list-style: none;
+		display: flex;
+		justify-content: space-between;
+		padding: 0;
+		margin: 0;
+		max-width: 50%;
+    	margin: 0 auto;
+		li{
+			label{
+				display: flex;
+				padding: 10px;
+				font-size: 25px;
+				color: $black;
+				transition: $transition;
+			}
+			&.tab-active{
+				border-bottom: 2px solid;
+			}
+			&.tab-inactive{
+				label{
+					opacity: 0.5;
+				}
+			}
+			.hidden{
+				display: none;
+			}
+		}
+	}
+
+	///////////////////////////
+	/////   MediaQueries //////
+	///////////////////////////
+	@media screen and (max-width: $big-phone) {
+		ul.tab-nav{
+			max-width: 100%;
+			li{
+				label{
+					font-size: 20px;
+				}
+			}
+		}
+	}
+
+	@media screen and (max-width: $phone) {
+		ul.tab-nav{
+			li{
+				label{
+					font-size: 16px;
+				}
+			}
+		}
+	}
+</style>

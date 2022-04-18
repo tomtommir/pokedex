@@ -56,63 +56,203 @@ $spin: spin 2s linear infinite;
 //////////////////////////////
 .normal{
     background-color: #A8A77A;
+    ul.tab-nav{
+		li{
+			&.tab-active{
+                border-color: #A8A77A;
+            }
+        }
+    }
 }
 .fighting{
     background-color: #C22E28;
+    ul.tab-nav{
+		li{
+			&.tab-active{
+                border-color: #C22E28;
+            }
+        }
+    }
 }
 .flying{
     background-color: #A98FF3;
+    ul.tab-nav{
+		li{
+			&.tab-active{
+                border-color: #A98FF3;
+            }
+        }
+    }
 }
 .poison{
     background-color: #A33EA1;
+    ul.tab-nav{
+		li{
+			&.tab-active{
+                border-color: #A33EA1;
+            }
+        }
+    }
 }
 .ground{
     background-color: #E2BF65;
+    ul.tab-nav{
+		li{
+			&.tab-active{
+                border-color: #E2BF65;
+            }
+        }
+    }
 }
 .rock{
     background-color: #B6A136;
+    ul.tab-nav{
+		li{
+			&.tab-active{
+                border-color: #B6A136;
+            }
+        }
+    }
 }
 .bug{
     background-color: #A6B91A;
+    ul.tab-nav{
+		li{
+			&.tab-active{
+                border-color: #A6B91A;
+            }
+        }
+    }
 }
 .ghost{
     background-color: #735797;
+    ul.tab-nav{
+		li{
+			&.tab-active{
+                border-color: #735797;
+            }
+        }
+    }
 }
 .steel{
     background-color: #B7B7CE;
+    ul.tab-nav{
+		li{
+			&.tab-active{
+                border-color: #B7B7CE;
+            }
+        }
+    }
 }
 .fire{
     background-color: #EE8130;
+    ul.tab-nav{
+		li{
+			&.tab-active{
+                border-color: #EE8130;
+            }
+        }
+    }
 }
 .water{
     background-color: #6390F0;
+    ul.tab-nav{
+		li{
+			&.tab-active{
+                border-color: #6390F0;
+            }
+        }
+    }
 }
 .grass{
     background-color: #7AC74C;
+    ul.tab-nav{
+		li{
+			&.tab-active{
+                border-color: #7AC74C;
+            }
+        }
+    }
 }
 .electric{
     background-color: #F7D02C;
+    ul.tab-nav{
+		li{
+			&.tab-active{
+                border-color: #F7D02C;
+            }
+        }
+    }
 }
 .psychic{
     background-color: #F95587;
+    ul.tab-nav{
+		li{
+			&.tab-active{
+                border-color: #F95587;
+            }
+        }
+    }
 }
 .ice{
     background-color: #96D9D6;
+    ul.tab-nav{
+		li{
+			&.tab-active{
+                border-color: #96D9D6;
+            }
+        }
+    }
 }
 .dragon{
     background-color: #6F35FC;
+    ul.tab-nav{
+		li{
+			&.tab-active{
+                border-color: #6F35FC;
+            }
+        }
+    }
 }
 .dark{
     background-color: #705746;
+    ul.tab-nav{
+		li{
+			&.tab-active{
+                border-color: #705746;
+            }
+        }
+    }
 }
 .fairy{
     background-color: #D685AD;
+    ul.tab-nav{
+		li{
+			&.tab-active{
+                border-color: #D685AD;
+            }
+        }
+    }
 }
 .unknown{
     background-color: #9ea382;
+    ul.tab-nav{
+		li{
+			&.tab-active{
+                border-color: #9ea382;
+            }
+        }
+    }
 }
 .shadow{
     background-color: #080c46;
+    ul.tab-nav{
+		li{
+			&.tab-active{
+                border-color: #080c46;
+            }
+        }
+    }
 }
 .inactive{
     display: none !important;

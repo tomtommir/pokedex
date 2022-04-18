@@ -118,6 +118,9 @@ export default {
 			},500);
 		},
 	},
+	beforeMounted(){
+		//this.getPokemonInfo(this.url)
+	},
 	mounted(){
 		this.getPokemonInfo(this.url)
 	}
@@ -195,6 +198,7 @@ export default {
 			background-color: $white-cream-transparent;
 			z-index: 2;
 			border-radius: 30px 30px 0px 0px;
+			padding: 60px 30px 30px 30px;
 		}
 	}
 
@@ -236,6 +240,9 @@ export default {
 				img{
 					margin-bottom: -50px;
 				}
+			}
+			.bottom{
+				padding: 50px 15px 15px 15px;
 			}
 		}
 	}
