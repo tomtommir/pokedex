@@ -52,12 +52,6 @@ import axios from "axios"
 export default {
 	name: "AboutContent",
     props: ["idPokemon"],
-	watch: {
-        idPokemon: function(idPokemon) {
-			this.getSize(idPokemon)
-			this.getShapeGenderEgg(idPokemon)
-        }
-	},
 	data() {
 		return {
 			shape: "",

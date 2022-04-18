@@ -128,9 +128,8 @@ export default {
 	.container-pokemon{
 		display: flex;
 		flex-direction: column;
-		padding: 0 30px;
 		.back{
-			padding: 30px 0;
+			padding: 30px 30px 0 30px;
 			i{
 				font-size: 30px;
 				color: $white;
@@ -142,6 +141,7 @@ export default {
 			flex-direction: row;
 			justify-content: space-between;
     		align-items: center;
+			padding: 0 30px;
 			.left{
 				h1{
 					text-transform: capitalize;
@@ -180,9 +180,62 @@ export default {
 				
 			}
 		}
-		.bottom{
+		.center{
+    		text-align: center;
+			position: relative;
+			background-image: url("../assets/background-pokemon.png");
+			background-position: right bottom;
+			background-repeat: no-repeat;
+			z-index: 3;
 			img{
+				margin-bottom: -80px;
+			}
+		}
+		.bottom{
+			background-color: $white-cream-transparent;
+			z-index: 2;
+			border-radius: 30px 30px 0px 0px;
+		}
+	}
 
+	///////////////////////////
+	/////   MediaQueries //////
+	///////////////////////////
+	@media screen and (max-width: $big-phone) {
+		.container-pokemon{
+			.center{
+				background-size: contain;
+				img{
+					max-width: 75%;
+					margin-left: auto;
+					margin-right: auto;
+				}
+			}
+		}
+	}
+
+	@media screen and (max-width: $phone) {
+		.container-pokemon{
+			.back{
+				position: fixed;
+				top: 0;
+				left: 0;
+				padding: 20px 15px;
+			}
+			.top{
+				padding: 15px;
+				flex-direction: column-reverse;
+				.left{
+					width: 100%;
+					h1{
+						margin-bottom: 20px !important;
+					}
+				}
+			}
+			.center{
+				img{
+					margin-bottom: -50px;
+				}
 			}
 		}
 	}

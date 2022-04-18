@@ -1,13 +1,13 @@
 <template>
   <div>
-    <ul class="">
+    <ul class="tab-nav">
       <li
         v-for="(tab, index) in tabList"
         :key="index"
         class=""
         :class="{
-          'text-blue': index + 1 === activeTab,
-          'text-white': index + 1 !== activeTab,
+          'tab-active': index + 1 === activeTab,
+          'tab-inactive': index + 1 !== activeTab,
         }"
       >
         <label
@@ -29,7 +29,7 @@
       <div
         :key="index"
         v-if="index + 1 === activeTab"
-        class=" "
+        class="tab-content"
       >
         <slot :name="`tabPanel-${index + 1}`" />
       </div>

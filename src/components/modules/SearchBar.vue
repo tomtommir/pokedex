@@ -142,34 +142,45 @@ export default {
         }
     }
     @media screen and (max-width: $big-phone) {
-    #app{
-        .search-toggle {
-            right: 20px;
-            top: 20px;
-            font-size: 25px;
-            padding: 15px;
-            &:hover{
-                &:before{
-                    transform: initial;
+        #app{
+            .search-toggle {
+                right: 20px;
+                top: 20px;
+                font-size: 25px;
+                padding: 15px;
+                &:hover{
+                    &:before{
+                        transform: initial;
+                    }
+                }
+            }
+            .search-container {
+                width: 80%;
+                top: 27px;
+                left: 0;
+                margin: 0;
+                padding: 0 20px;
+                .search-reset {
+                    right: 30px;
+                }
+                .search-button{
+                    left: 30px;
                 }
             }
         }
-        .search-container {
-            width: 80%;
-            top: 27px;
-            left: 0;
-            margin: 0;
-            padding: 0 20px;
-            .search-reset {
-                right: 30px;
+        .search-container{
+            width: 100%;
+        }
+    }
+
+    @media screen and (max-width: $phone) {
+        #app{
+            .search-toggle {
+                right: 15px;
             }
-            .search-button{
-                left: 30px;
+            .search-container {
+                padding: 0 12px;
             }
         }
     }
-    .search-container{
-        width: 100%;
-    }
-}
 </style>

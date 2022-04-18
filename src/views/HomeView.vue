@@ -116,5 +116,11 @@ export default {
 			}			
 		}
 	}
+
+	@media screen and (max-width: $phone) {
+		.container-home{
+			padding: 0 15px;		
+		}
+	}
 	
 </style>
