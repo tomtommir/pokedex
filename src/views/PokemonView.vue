@@ -28,17 +28,23 @@
 			/>
 		</div>
 		<div class="bottom">
-			<ul class="nav">
-				<li>About</li>
-				<li>Base stats</li>
-				<li>Evolution</li>
-				<li>Moves</li>
-			</ul>
-			<div class="infos">
-				<AboutContent
-					:idPokemon="id"
-				/>
-			</div>
+			<TabModule class="" :tabList="tabList">
+				<template v-slot:tabPanel-1>
+					<AboutContent
+						:idPokemon="id"
+					/>
+				</template>
+				<template v-slot:tabPanel-2>
+					<StatsContent
+						:idPokemon="id"
+					/> 
+				</template>
+				<template v-slot:tabPanel-3>
+					<EvolutionContent
+						:idPokemon="id"
+					/>
+				</template>
+			</TabModule>
 		</div>
 	</div>
 </template>
@@ -46,11 +52,17 @@
 <script>
 import axios from "axios"
 import AboutContent from "@/components/pokemon/AboutContent.vue"
+import StatsContent from "@/components/pokemon/StatsContent.vue"
+import EvolutionContent from "@/components/pokemon/EvolutionContent.vue"
+import TabModule from "@/components/modules/TabModule.vue"
 
 export default {
 	name: "PokemonView",
 	components: {
-		AboutContent
+		AboutContent,
+		StatsContent,
+		EvolutionContent,
+		TabModule
 	},
 	data() {
 		return {
@@ -58,8 +70,9 @@ export default {
 			name: "",
 			classPokemon: "",
 			types:[],
+			tabList:["About","Base stats","Evolution"],
 			img: "",
-			url: "https://pokeapi.co/api/v2/pokemon/1",
+			url: "https://pokeapi.co/api/v2/pokemon/29",
 			loading: false,
 			error: false
 		}
