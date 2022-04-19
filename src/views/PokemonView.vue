@@ -72,7 +72,7 @@ export default {
 			types:[],
 			tabList:["About","Base stats","Evolution"],
 			img: "",
-			url: "https://pokeapi.co/api/v2/pokemon/29",
+			url: "https://pokeapi.co/api/v2/pokemon/1",
 			loading: false,
 			error: false
 		}

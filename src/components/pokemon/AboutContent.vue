@@ -24,11 +24,11 @@
             <span class="content">
                 <span class="men" v-if="genderM != 0">
                     <i class="ri-men-line"></i>
-                    {{ genderM }}
+                    {{ genderM }} %
                 </span>
                 <span class="women" v-if="genderW != 0">
                     <i class="ri-women-line"></i>
-                    {{ genderW }}
+                    {{ genderW }} %
                 </span>
                 <span class="genderless" v-if="genderM == 0 && genderW == 0">
                     <i class="ri-genderless-line"></i>
@@ -36,7 +36,7 @@
             </span>
         </li>
         <li>
-            <span class="title">Egg group</span>
+            <span class="title">Egg groups</span>
             <span class="content">{{ eggGroupsTxt }}</span>
         </li>
         <li>
@@ -86,9 +86,9 @@ export default {
                 this.abilities.forEach(function(item,index,array){
                     //On regarde le derniere itération de la boucle
                     if (index === array.length - 1){ 
-                        self.abilitiesTxt += item.ability.name
+                        self.abilitiesTxt += self.capitalize(item.ability.name)
                     }else{
-                        self.abilitiesTxt += item.ability.name + ", "
+                        self.abilitiesTxt += self.capitalize(item.ability.name) + ", "
                     }
                 })
             })
@@ -103,7 +103,7 @@ export default {
 
             axios.get("https://pokeapi.co/api/v2/pokemon-species/"+id)
             .then(response => {
-                this.shape = response.data.shape.name
+                this.shape = this.capitalize(response.data.shape.name)
 
                 //On met en % le genre (score sur 8, si égale à -1 alors pas de genre)
                 if(response.data.gender_rate == -1){
@@ -119,9 +119,9 @@ export default {
                 this.eggGroups.forEach(function(item,index,array){
                     //On regarde le derniere itération de la boucle
                     if (index === array.length - 1){ 
-                        self.eggGroupsTxt += item.name
+                        self.eggGroupsTxt += self.capitalize(item.name)
                     }else{
-                        self.eggGroupsTxt += item.name + ", "
+                        self.eggGroupsTxt += self.capitalize(item.name) + ", "
                     }
                 })
 
@@ -134,8 +134,15 @@ export default {
             })
             .finally(() => (this.loading = false))
 		},
+        //Permettre de mettre la première lettre en majuscule
+        capitalize(s) {
+            if (typeof s !== 'string') return ''
+            return s.charAt(0).toUpperCase() + s.slice(1)
+        }
+
 	},
     mounted() {
+        //On regarde si idPokemon est défini pour pas le lancer au tout début 
         if(!isNaN(this.idPokemon)){
             this.getSize(this.idPokemon)
             this.getShapeGenderEgg(this.idPokemon)
@@ -143,3 +150,63 @@ export default {
     }
 }
 </script>
+
+<style lang="scss" scoped>
+    h3{
+        font-weight: 500;
+        font-size: 20px;
+        margin: 30px 0 0 0;
+    }
+    ul{
+        margin: 0;
+        padding: 30px 0 0 0;
+        list-style: none;
+        li{
+            display: flex;
+            column-gap: 20px;
+            padding: 0 0 15px 0;
+            .title{
+                min-width: 120px;
+                opacity: 0.6;
+                font-size: 15px;
+            } 
+            .content{
+                font-weight: 500;
+                display: flex;
+                column-gap: 15px;
+                font-size: 17px;
+                i{
+                    &.ri-women-line{
+                        color: $women;
+                    }
+                    &.ri-men-line{
+                        color: $men;
+                    }
+                    &.ri-genderless-line{
+                        
+                    }
+                }
+            }   
+        }
+    }
+
+    ///////////////////////////
+	/////   MediaQueries //////
+	///////////////////////////
+	@media screen and (max-width: $phone) {
+        h3{
+            font-size: 18px;
+        }
+        ul{
+            li{
+                .title{
+                    font-size: 14px;
+                    min-width: 100px;
+                } 
+                .content{
+                    font-size: 15px;
+                }
+            }
+        }
+    }
+</style>

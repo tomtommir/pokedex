@@ -64,7 +64,7 @@ export default {
 		justify-content: space-between;
 		padding: 0;
 		margin: 0;
-		max-width: 50%;
+		max-width: 55%;
     	margin: 0 auto;
 		li{
 			label{
@@ -73,13 +73,17 @@ export default {
 				font-size: 25px;
 				color: $black;
 				transition: $transition;
+				cursor: pointer;
 			}
 			&.tab-active{
 				border-bottom: 2px solid;
 			}
 			&.tab-inactive{
 				label{
-					opacity: 0.5;
+					opacity: 0.3;
+					&:hover{
+						opacity: 1;
+					}
 				}
 			}
 			.hidden{

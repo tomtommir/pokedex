@@ -8,7 +8,7 @@
                 :src="pokemon.img" 
                 :alt="pokemon.name" 
                 />
-            {{ pokemon.name }}
+            <span class="title">{{ pokemon.name }}</span>
         </li>
     </ul>
 </template>
@@ -130,3 +130,55 @@ export default {
     }
 }
 </script>
+
+<style lang="scss" scoped>
+    ul{
+        margin: 0;
+        padding: 30px 0;
+        list-style: none;
+        display: flex;
+        column-gap: 100px;
+        li{
+            display: flex;
+            row-gap: 20px;
+            padding: 0;
+            flex-grow: 1;
+            flex-direction: column;
+            align-items: center;
+            img{
+                width: 100%;
+            }
+            .title{
+                text-transform: capitalize;
+                font-size: 17px;
+            }
+        }
+    }
+
+    ///////////////////////////
+	/////   MediaQueries //////
+	///////////////////////////
+    @media screen and (max-width: $tablet) {
+        ul{
+            column-gap: 50px;
+            li{
+
+            }
+        }
+    }
+
+	@media screen and (max-width: $phone) {
+        ul{
+            display: flex;
+            flex-direction: column;
+            row-gap: 40px;
+            li{
+                row-gap: 10px;
+                img{
+                    max-width: 50%;
+                    margin: 0 auto;
+                }
+            }
+        }
+    }
+</style>
