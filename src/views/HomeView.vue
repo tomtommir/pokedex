@@ -10,11 +10,6 @@
 				ref="pokemonList"
 				:search="searchList"
 			/>
-			<!-- <PokemonInfo
-				:name="namePokemon"
-				:url="urlPokemon"
-				:clicked="clickedList"
-			/> -->
 		</div>
 	</div>
 </template>
@@ -22,7 +17,6 @@
 <script>
 import PokemonList from "@/components/home/PokemonList"
 import SearchBar from "@/components/modules/SearchBar"
-import $ from 'jquery'
 export default {
 	name: "HomeView",
 	components: {
@@ -46,7 +40,7 @@ export default {
 				//On est sur un click sur la liste
 				//MAJ de la pokemonInfo
 				this.clickedList = true
-				$('html, body').animate({scrollTop:$('#pokemon-info').position().top}, 'slow');
+				//$('html, body').animate({scrollTop:$('#pokemon-info').position().top}, 'slow');
 			}else if(type === 'search'){
 				//On est sur une recherche sur la liste
 				//MAJ de la pokemonList

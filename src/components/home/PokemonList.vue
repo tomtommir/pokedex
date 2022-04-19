@@ -8,9 +8,10 @@
                 <li 
                     v-for="pokemon in pokemonList" 
                     :key="pokemon.id" 
-                    @click="getInfoPokemon(pokemon.url,pokemon.name)"
+                    @click="$router.push('pokemon')"
                     :class="pokemon.class"
                     >
+                    <!-- @click="getInfoPokemon(pokemon.url,pokemon.name)" -->
                     <div class="top">
                         <span class="name-mobile">{{ pokemon.name }}</span>
                         <span class="id">#{{ pokemon.id }}</span>

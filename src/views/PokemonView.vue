@@ -2,7 +2,9 @@
 	<div class="container-pokemon"
 		:class="classPokemon"
 		>
-		<div class="back">
+		<div
+			@click="$router.push('/')" 
+			class="back">
 			<i class="ri-arrow-left-line"></i>
 		</div>
 		<div class="top">
