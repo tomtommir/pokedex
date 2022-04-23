@@ -44,6 +44,7 @@
 				<template v-slot:tabPanel-3>
 					<EvolutionContent
 						:idPokemon="id"
+						@changePokemon="loadPokemonInfo($event)"
 					/>
 				</template>
 			</TabModule>
@@ -60,6 +61,9 @@ import TabModule from "@/components/modules/TabModule.vue"
 
 export default {
 	name: "PokemonView",
+	props: [
+
+	],
 	components: {
 		AboutContent,
 		StatsContent,
@@ -74,7 +78,7 @@ export default {
 			types:[],
 			tabList:["About","Base stats","Evolution"],
 			img: "",
-			url: "https://pokeapi.co/api/v2/pokemon/1",
+			url: "https://pokeapi.co/api/v2/pokemon/",
 			loading: false,
 			error: false
 		}
@@ -101,6 +105,7 @@ export default {
                 this.img = sprites.other['official-artwork'].front_default
             }
         },
+		//récupération des infos pokemon
 		getPokemonInfo(url){
 			this.loading = true
 			this.error = false
@@ -119,12 +124,16 @@ export default {
 				.finally(() => (this.loading = false))
 			},500);
 		},
+		//On recharge la page pokemon avec l'id (click depuis l'evolution)
+		loadPokemonInfo(id){
+			this.getPokemonInfo(this.url + id)
+		}
 	},
 	beforeMounted(){
 		//this.getPokemonInfo(this.url)
 	},
 	mounted(){
-		this.getPokemonInfo(this.url)
+		this.getPokemonInfo(this.url + this.$route.params.name)
 	}
 }
 </script>

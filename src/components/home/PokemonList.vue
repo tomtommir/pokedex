@@ -8,7 +8,7 @@
                 <li 
                     v-for="pokemon in pokemonList" 
                     :key="pokemon.id" 
-                    @click="$router.push('pokemon')"
+                    @click="$router.push({name: 'pokemon', params: { id: pokemon.id , name: pokemon.name }})"
                     :class="pokemon.class"
                     >
                     <!-- @click="getInfoPokemon(pokemon.url,pokemon.name)" -->

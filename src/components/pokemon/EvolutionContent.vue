@@ -2,7 +2,8 @@
     <ul>
         <li
             v-for="pokemon in evolutionPokemon" 
-            :key="pokemon.id">
+            :key="pokemon.id"
+            @click="changePokemon(pokemon.id,pokemon.name)">
             <img 
                 class="pokemon-img" 
                 :src="pokemon.img" 
@@ -124,6 +125,17 @@ export default {
                 
             }
         },
+        changePokemon(id,name){
+            //On change l'URL
+            this.$router.push({name: 'pokemon', params: { id: id , name: name }})
+
+            //on vide les variables des évolutions
+            this.evolution = []
+            this.evolutionPokemon = []
+
+            //on envoit à pokemonView le nouvel pokemon à lancer
+            this.$emit('changePokemon', id)
+        }
 	},
     mounted(){
         this.getUrlEvolution(this.idPokemon)

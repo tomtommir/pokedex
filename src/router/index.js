@@ -9,12 +9,13 @@ const routes = [
     component: HomeView
   },
   {
-    path: '/pokemon',
+    path: '/pokemon/:name',
     name: 'pokemon',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: PokemonView
+    component: PokemonView,
+    props: true
   }
 
 ]
